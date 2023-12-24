@@ -21,7 +21,7 @@ public class EntrepriseController {
     @Path("/getAll")
     @Produces({MediaType.APPLICATION_JSON})
     public Response getAll() {
-
+        System.out.println("ok");
         List<Entreprise> entreprises = entrepriseService.getAll();
 
         return Response.status(200).entity(entreprises).build();
