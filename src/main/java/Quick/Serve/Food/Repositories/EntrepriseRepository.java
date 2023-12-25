@@ -54,8 +54,6 @@ public class EntrepriseRepository {
         }catch (SQLException e){
             e.getStackTrace();
 
-        }finally {
-            DatabaseConnection.getInstance().closeConnection();
         }
         return entreprises;
     }
@@ -86,7 +84,7 @@ public class EntrepriseRepository {
         }finally {
             try {
                 preparedStatement.close();
-                DatabaseConnection.getInstance().closeConnection();
+                //DatabaseConnection.getInstance().closeConnection();
             }catch (SQLException e){
                 e.getStackTrace();
             }

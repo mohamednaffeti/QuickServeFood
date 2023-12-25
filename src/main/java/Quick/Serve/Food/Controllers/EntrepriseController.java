@@ -19,8 +19,8 @@ public class EntrepriseController {
     @Path("/getAll")
     @Produces({MediaType.APPLICATION_JSON})
     public Response getAll() {
-        System.out.println("ok");
         List<Entreprise> entreprises = entrepriseService.getAll();
+
         return Response.status(200).entity(entreprises).build();
     }
     @POST
@@ -28,6 +28,8 @@ public class EntrepriseController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addEntreprise(Entreprise entreprise){
-        return null;
+        Entreprise addedEntreprise = entrepriseService.addEntreprise(entreprise);
+        return (addedEntreprise != null) ? Response.status(Response.Status.CREATED).entity(addedEntreprise).build()
+         : Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
     }
 }
