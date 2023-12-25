@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Persistence Layer
@@ -19,6 +20,9 @@ public class EntrepriseRepository {
 
     private EntrepriseRepository() {
     }
+    /**
+     * Singelton Instance for EntrepriseRepository
+     */
     public static synchronized EntrepriseRepository getInstance(){
         if(instance == null){
             instance = new EntrepriseRepository();
@@ -26,6 +30,9 @@ public class EntrepriseRepository {
         return instance;
     }
 
+    /**
+     * getAll Entreprises from the database
+     */
     public List<Entreprise> getAll(){
 
 
@@ -58,12 +65,15 @@ public class EntrepriseRepository {
         return entreprises;
     }
 
+    /**
+     * Add new Entreprise in database
+     */
     public Entreprise addEntreprise(Entreprise entreprise){
 
         PreparedStatement preparedStatement = null;
         int rowAffected = 0;
         try{
-
+            entreprise.setId(UUID.randomUUID().toString());
             Connection connection = DatabaseConnection.getInstance().getConnection();
             StringBuilder sql= new StringBuilder("INSERT INTO entreprise (id, name, phonenumber, secondphonenumber, email, address, hourlyRate, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             preparedStatement = connection.prepareStatement(String.valueOf(sql));
@@ -92,7 +102,51 @@ public class EntrepriseRepository {
         }
         return (rowAffected > 0) ? entreprise : null;
     }
+    /**
+     * Delete Entreprise byID
+     */
+    public boolean deleteEntrepriseById(String id){
+        PreparedStatement preparedStatement = null;
+        int rowAffected = 0;
+        try {
+            Connection connection = DatabaseConnection.getInstance().getConnection();
+            StringBuilder sql = new StringBuilder("DELETE FROM entreprise WHERE id=?");
+            preparedStatement = connection.prepareStatement(String.valueOf(sql));
+            preparedStatement.setString(1,id);
+            rowAffected = preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            e.getStackTrace();
+        }
+        return (rowAffected > 0) ? true : false;
+    }
 
+    /**
+     * Update Entreprise infomrations
+     */
+    public Entreprise updateEntreprise(Entreprise newEntreprise){
+        PreparedStatement preparedStatement;
+        int rowAffected = 0;
+        try {
+            Connection connection = DatabaseConnection.getInstance().getConnection();
+            StringBuilder sql = new StringBuilder("UPDATE entreprise SET name=?, phonenumber=?, secondphonenumber=?, email=?, address=?, hourlyRate=?, description=? WHERE id=?");
+            preparedStatement = connection.prepareStatement(String.valueOf(sql));
+
+            preparedStatement.setString(1, newEntreprise.getName());
+            preparedStatement.setString(2, newEntreprise.getPhonenumber());
+            preparedStatement.setString(3, newEntreprise.getSecondphonenumber());
+            preparedStatement.setString(4, newEntreprise.getEmail());
+            preparedStatement.setString(5, newEntreprise.getAddress());
+            preparedStatement.setDouble(6, newEntreprise.getHourlyrate());
+            preparedStatement.setString(7, newEntreprise.getDescription());
+            preparedStatement.setString(8, newEntreprise.getId());
+
+            rowAffected = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+
+        return (rowAffected > 0) ? newEntreprise : null;
+    }
 
 
 }

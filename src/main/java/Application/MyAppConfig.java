@@ -13,12 +13,13 @@ import java.util.Set;
 @ApplicationPath("/")
 public class MyAppConfig extends Application {
 
+    /**
+     * We add all controllers here
+     */
     @Override
     public Set<Class<?>> getClasses() {
         Set<Class<?>> classes = new HashSet<>();
         classes.add(EntrepriseController.class);
-
-
         return classes;
     }
 }

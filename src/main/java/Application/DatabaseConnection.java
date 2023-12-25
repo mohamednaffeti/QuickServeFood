@@ -37,12 +37,8 @@ public class DatabaseConnection {
         try {
             DatabaseProperties dbconnection;
             dbconnection = getDbProps("database.properties");
-            System.out.println(dbconnection.getUrl());
-            System.out.println(dbconnection.getUsername());
-            System.out.println(dbconnection.getPassword());
             connection = DriverManager.getConnection(dbconnection.getUrl(),dbconnection.getUsername(), dbconnection.getPassword());
-            logger.debug("Connexion : " + connection);
-            System.out.println(connection);
+            logger.info("Connexion : " + connection);
         }catch (SQLException | IOException e){
             e.getStackTrace();
         }

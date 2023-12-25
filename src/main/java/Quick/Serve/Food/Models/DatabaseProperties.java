@@ -1,5 +1,8 @@
 package Quick.Serve.Food.Models;
 
+/**
+ * Database Informations Model
+ */
 public class DatabaseProperties {
     private String url;
     private String username;

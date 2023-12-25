@@ -6,6 +6,9 @@ import Quick.Serve.Food.Services.EntrepriseService;
 
 import java.util.List;
 
+/**
+ * Business Logic
+ */
 public class EntrepriseServiceImplementation implements EntrepriseService {
 
     private final EntrepriseRepository entrepriseRepository = EntrepriseRepository.getInstance();
@@ -28,6 +31,16 @@ public class EntrepriseServiceImplementation implements EntrepriseService {
     @Override
     public Entreprise addEntreprise(Entreprise entreprise) {
         return entrepriseRepository.addEntreprise(entreprise);
+    }
+
+    @Override
+    public boolean deleteEntrepriseById(String id) {
+        return entrepriseRepository.deleteEntrepriseById(id);
+    }
+
+    @Override
+    public Entreprise updateEntreprise(Entreprise newEntreprise) {
+        return entrepriseRepository.updateEntreprise(newEntreprise);
     }
 
 }

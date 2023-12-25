@@ -7,7 +7,7 @@
 
     <changeSet id="createTable-Entreprise" author="liquibase">
         <createTable tableName="entreprise">
-            <column name="id" type="varchar(30)">
+            <column name="id" type="varchar(300)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)">

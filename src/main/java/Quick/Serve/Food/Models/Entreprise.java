@@ -1,5 +1,9 @@
 package Quick.Serve.Food.Models;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+ * Entreprise Model
+ */
 public class Entreprise {
 
     @JsonProperty("id")
