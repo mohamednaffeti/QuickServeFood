@@ -1,7 +1,7 @@
 package Quick.Serve.Food.ServicesImplementations;
 
 import Quick.Serve.Food.Models.Entreprise;
-import Quick.Serve.Food.Repository.EntrepriseRepository;
+import Quick.Serve.Food.Repositories.EntrepriseRepository;
 import Quick.Serve.Food.Services.EntrepriseService;
 
 import java.util.List;
@@ -22,9 +22,12 @@ public class EntrepriseServiceImplementation implements EntrepriseService {
     @Override
     public List<Entreprise> getAll() {
         List<Entreprise> entreprises= entrepriseRepository.getAll();
-        for(Entreprise e : entreprises){
-            System.out.println(e);
-        }
         return entreprises;
     }
+
+    @Override
+    public Entreprise addEntreprise(Entreprise entreprise) {
+        return entrepriseRepository.addEntreprise(entreprise);
+    }
+
 }

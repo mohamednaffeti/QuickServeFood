@@ -6,8 +6,6 @@ import Quick.Serve.Food.ServicesImplementations.EntrepriseServiceImplementation;
 import java.util.List;
 
 public interface EntrepriseService {
-        static EntrepriseService getInstance(){
-                return EntrepriseServiceImplementation.getInstance();
-        }
         List <Entreprise> getAll();
+        Entreprise addEntreprise(Entreprise entreprise);
 }

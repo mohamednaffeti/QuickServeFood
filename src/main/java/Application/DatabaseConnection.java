@@ -1,7 +1,6 @@
 package Application;
 
 import Quick.Serve.Food.Models.DatabaseProperties;
-import Quick.Serve.Food.Repository.EntrepriseRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

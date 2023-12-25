@@ -1,5 +1,5 @@
 import Quick.Serve.Food.Models.Entreprise;
-import Quick.Serve.Food.Repository.EntrepriseRepository;
+import Quick.Serve.Food.Repositories.EntrepriseRepository;
 import org.junit.Test;
 
 import java.util.List;
@@ -30,5 +30,23 @@ public class EntrepriseRepositoryTest {
             assertNotNull(entreprise.getHourlyrate());
             assertNotNull(entreprise.getDescription());
         }
+    }
+    @Test
+    public void testAdd(){
+        Entreprise entreprise = new Entreprise();
+        entreprise.setId("11433110");
+        entreprise.setName("FastFood");
+        entreprise.setPhonenumber("56565656");
+        entreprise.setSecondphonenumber("56564747");
+        entreprise.setEmail("mohamed@gmail.com");
+        entreprise.setAddress("Tunis");
+        entreprise.setHourlyrate(9);
+        entreprise.setDescription("ok");
+
+        Entreprise entreprise1 = entrepriseRepository.addEntreprise(entreprise);
+        System.out.println(entreprise1);
+        assertNotNull(entreprise1);
+
+
     }
 }

@@ -1,4 +1,4 @@
-package Quick.Serve.Food.Controller;
+package Quick.Serve.Food.Controllers;
 
 import Quick.Serve.Food.Models.Entreprise;
 import Quick.Serve.Food.Services.EntrepriseService;
@@ -6,9 +6,7 @@ import Quick.Serve.Food.ServicesImplementations.EntrepriseServiceImplementation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -21,10 +19,14 @@ public class EntrepriseController {
     @Path("/getAll")
     @Produces({MediaType.APPLICATION_JSON})
     public Response getAll() {
-        System.out.println("ok");
-        System.out.println("ok");
         List<Entreprise> entreprises = entrepriseService.getAll();
-
         return Response.status(200).entity(entreprises).build();
+    }
+    @POST
+    @Path("/add")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addEntreprise(Entreprise entreprise){
+        return null;
     }
 }

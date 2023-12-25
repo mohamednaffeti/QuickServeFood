@@ -1,6 +1,6 @@
 package Application;
 
-import Quick.Serve.Food.Controller.EntrepriseController;
+import Quick.Serve.Food.Controllers.EntrepriseController;
 
 
 
